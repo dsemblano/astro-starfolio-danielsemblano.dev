@@ -42,14 +42,19 @@ const { baseFontSize } = CONFIG.typography;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- FOUC prevention: apply dark theme by default before first paint -->
+<!-- FOUC prevention: apply dark theme by default before first paint -->
     <script is:inline>
       (function () {
         try {
           var theme = localStorage.getItem("theme");
           
-          // If a theme is saved, use it. If no theme is saved, default strictly to dark.
-          if (theme === "dark" || !theme) {
+          // If it's a completely new visit (incognito), explicitly force and write "dark"
+          if (!theme) {
+            localStorage.setItem("theme", "dark");
+            theme = "dark";
+          }
+
+          if (theme === "dark") {
             document.documentElement.classList.add("dark");
           } else {
             document.documentElement.classList.remove("dark");
