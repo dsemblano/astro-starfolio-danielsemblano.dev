@@ -1,8 +1,9 @@
 import React from "react";
+import { DATA as englishData } from "@/data/resume";
+import { DATA as portugueseData } from "@/data/resume-pt";
 import BlurFade from "@/components/magicui/blur-fade";
 import BlurFadeText from "@/components/magicui/blur-fade-text";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { DATA } from "@/data/resume";
 import Markdown from "react-markdown";
 import ContactSection from "@/components/section/contact-section";
 import HackathonsSection from "@/components/section/hackathons-section";
@@ -12,55 +13,62 @@ import WorkSection from "@/components/section/work-section";
 import ProfessionalSummary from "@/components/section/professionalSummary-section";
 import { ArrowUpRight } from "lucide-react";
 
+// Inside src/components/HomePage.tsx
+
+interface HomePageProps {
+  lang: "en" | "pt";
+}
+
 const BLUR_FADE_DELAY = 0.04;
 
-const sectionComponents: Record<string, React.ReactNode> = {
-  about: (
+const sectionComponents: Record<string, (resumeData: any) => React.ReactNode> = {
+  about: (resumeData) => (
     <section id="about">
       <div className="flex min-h-0 flex-col gap-y-4">
         <BlurFade delay={BLUR_FADE_DELAY * 3}>
-          <h2 className="text-xl font-bold">{DATA.sections.about.heading}</h2>
+          <h2 className="text-xl font-bold">{resumeData.sections.about.heading}</h2>
         </BlurFade>
         <BlurFade delay={BLUR_FADE_DELAY * 4}>
           <div className="prose max-w-full text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert">
-            <Markdown>{DATA.summary}</Markdown>
+            <Markdown>{resumeData.summary}</Markdown>
           </div>
         </BlurFade>
       </div>
     </section>
   ),
-  professionalSummary: (
+  professionalSummary: (resumeData) => (
     <section id="professionalSummary">
       <div className="flex min-h-0 flex-col gap-y-6">
         <BlurFade delay={BLUR_FADE_DELAY * 5}>
-          <h2 className="text-xl font-bold">{DATA.sections.professionalSummary.heading}</h2>
+          <h2 className="text-xl font-bold">{resumeData.sections.professionalSummary.heading}</h2>
         </BlurFade>
         <BlurFade delay={BLUR_FADE_DELAY * 6}>
-          <ProfessionalSummary />
+          {/* Passing dynamic resumeData down into the sub-section */}
+          <ProfessionalSummary resumeData={resumeData} />
         </BlurFade>
       </div>
     </section>
   ),
-  work: (
+  work: (resumeData) => (
     <section id="work">
       <div className="flex min-h-0 flex-col gap-y-6">
         <BlurFade delay={BLUR_FADE_DELAY * 5}>
-          <h2 className="text-xl font-bold">{DATA.sections.work.heading}</h2>
+          <h2 className="text-xl font-bold">{resumeData.sections.work.heading}</h2>
         </BlurFade>
         <BlurFade delay={BLUR_FADE_DELAY * 6}>
-          <WorkSection />
+          <WorkSection resumeData={resumeData} />
         </BlurFade>
       </div>
     </section>
   ),
-  education: (
+  education: (resumeData) => (
     <section id="education">
       <div className="flex min-h-0 flex-col gap-y-6">
         <BlurFade delay={BLUR_FADE_DELAY * 7}>
-          <h2 className="text-xl font-bold">{DATA.sections.education.heading}</h2>
+          <h2 className="text-xl font-bold">{resumeData.sections.education.heading}</h2>
         </BlurFade>
         <div className="flex flex-col gap-8">
-          {DATA.education.map((education, index) => (
+          {resumeData.education.map((education: any, index: number) => (
             <BlurFade key={education.school} delay={BLUR_FADE_DELAY * 8 + index * 0.05}>
               <a
                 href={education.href}
@@ -96,14 +104,14 @@ const sectionComponents: Record<string, React.ReactNode> = {
       </div>
     </section>
   ),
-  skills: (
+  skills: (resumeData) => (
     <section id="skills">
       <div className="flex min-h-0 flex-col gap-y-4">
         <BlurFade delay={BLUR_FADE_DELAY * 9}>
-          <h2 className="text-xl font-bold">{DATA.sections.skills.heading}</h2>
+          <h2 className="text-xl font-bold">{resumeData.sections.skills.heading}</h2>
         </BlurFade>
         <div className="flex flex-wrap gap-2">
-          {DATA.skills.map((skill, id) => (
+          {resumeData.skills.map((skill: any, id: number) => (
             <BlurFade key={skill.name} delay={BLUR_FADE_DELAY * 10 + id * 0.05}>
               <div className="border bg-background border-border ring-2 ring-border/20 rounded-xl h-8 w-fit px-4 flex items-center gap-2">
                 {skill.icon && <skill.icon className="size-4 rounded overflow-hidden object-contain" />}
@@ -115,32 +123,35 @@ const sectionComponents: Record<string, React.ReactNode> = {
       </div>
     </section>
   ),
-  projects: (
+  projects: (resumeData) => (
     <section id="projects">
       <BlurFade delay={BLUR_FADE_DELAY * 11}>
-        <ProjectsSection />
+        <ProjectsSection resumeData={resumeData} />
       </BlurFade>
     </section>
   ),
-  hackathons: (
+  hackathons: (resumeData) => (
     <section id="hackathons">
       <BlurFade delay={BLUR_FADE_DELAY * 13}>
-        <HackathonsSection />
+        <HackathonsSection resumeData={resumeData} />
       </BlurFade>
     </section>
   ),
-  photos: <PhotosSection />,
-  contact: (
+  photos: () => <PhotosSection />,
+  contact: (resumeData) => (
     <section id="contact">
       <BlurFade delay={BLUR_FADE_DELAY * 16}>
-        <ContactSection />
+        <ContactSection resumeData={resumeData} />
       </BlurFade>
     </section>
   ),
 };
 
-export default function HomePage() {
-  const orderedSections = Object.entries(DATA.sections)
+export default function HomePage({ lang }: HomePageProps) {
+  // Select the safe, uncorrupted dataset entirely within React
+  const resumeData = lang === "pt" ? portugueseData : englishData;
+
+  const orderedSections = Object.entries(resumeData.sections)
     .filter(([, s]) => s.enabled)
     .sort(([, a], [, b]) => a.order - b.order)
     .map(([key]) => key);
@@ -155,29 +166,32 @@ export default function HomePage() {
                 delay={BLUR_FADE_DELAY}
                 className="text-3xl font-semibold tracking-tighter sm:text-4xl lg:text-5xl"
                 yOffset={8}
-                // text={`Hi, I'm ${DATA.name.split(" ")[0]}`}
-                text={`${DATA.name}`}
+                text={`${resumeData.name}`}
               />
               <BlurFadeText
                 className="text-muted-foreground max-w-[600px] md:text-lg lg:text-xl"
                 delay={BLUR_FADE_DELAY}
-                text={DATA.description}
+                text={resumeData.description}
               />
             </div>
             <BlurFade delay={BLUR_FADE_DELAY} className="order-1 md:order-2">
               <Avatar className="size-24 md:size-32 border rounded-full shadow-lg ring-4 ring-muted">
-                <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
-                <AvatarFallback>{DATA.initials}</AvatarFallback>
+                <AvatarImage alt={resumeData.name} src={resumeData.avatarUrl} />
+                <AvatarFallback>{resumeData.initials}</AvatarFallback>
               </Avatar>
             </BlurFade>
           </div>
         </div>
       </section>
-      {orderedSections.map((key) => (
-        <React.Fragment key={key}>
-          {sectionComponents[key]}
-        </React.Fragment>
-      ))}
+
+      {orderedSections.map((key) => {
+        const renderSection = sectionComponents[key];
+        return (
+          <React.Fragment key={key}>
+            {renderSection ? renderSection(resumeData) : null}
+          </React.Fragment>
+        );
+      })}
     </main>
   );
 }

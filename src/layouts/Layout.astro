@@ -5,6 +5,7 @@ import { CONFIG } from "@/data/config";
 import NavbarIsland from "@/components/NavbarIsland";
 import { FlickeringGrid } from "@/components/magicui/flickering-grid";
 const gaId = import.meta.env.PUBLIC_GA_ID;
+const lang = Astro.currentLocale || 'en';
 
 interface Props {
   title?: string;
@@ -35,6 +36,7 @@ const { baseFontSize } = CONFIG.typography;
 
 <html
   lang={CONFIG.site.locale.split("_")[0]}
+  {lang}
   style={`font-size: ${baseFontSize}%;`}
 >
   <head>

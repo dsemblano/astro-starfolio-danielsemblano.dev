@@ -47,4 +47,13 @@ export default defineConfig({
     remarkPlugins: [remarkGfm, remarkCodeMeta],
     rehypePlugins: [[rehypePrettyCode, prettyCodeOptions]],
   },
+
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'pt'],
+    routing: {
+      prefixDefaultLocale: false, // Keep your English site at domain.com/ and Portuguese at domain.com/pt/
+    },
+  },
+  
 });

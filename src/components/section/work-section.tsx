@@ -6,33 +6,34 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { DATA } from "@/data/resume";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-// function LogoImage({ src, alt }: { src: string; alt: string }) {
-//   const [imageError, setImageError] = useState(false);
+// 1. Tell TypeScript that this component expects the localized data object
+interface WorkSectionProps {
+  resumeData: {
+    work: Array<{
+      company: string;
+      title: string;
+      start: string;
+      end?: string;
+      description: string;
+      logoUrl: string;
+    }>;
+    sections: {
+      work: {
+        presentLabel: string;
+      };
+    };
+  };
+}
 
-//   if (!src || imageError) {
-//     return (
-//       <div className="size-8 md:size-10 p-1 border rounded-full shadow ring-2 ring-border bg-muted flex-none" />
-//     );
-//   }
-
-//   return (
-//     <img
-//       src={src}
-//       alt={alt}
-//       className="size-8 md:size-10 p-1 border rounded-full shadow ring-2 ring-border overflow-hidden object-contain flex-none"
-//       onError={() => setImageError(true)}
-//     />
-//   );
-// }
-
-export default function WorkSection() {
+// 2. Accept the resumeData prop right here in the function parameters
+export default function WorkSection({ resumeData }: WorkSectionProps) {
   return (
     <Accordion type="single" collapsible className="w-full columns-1 lg:columns-2 gap-6 space-y-6">
-      {DATA.work.map((work) => (
+      {/* 3. Changed DATA.work to resumeData.work */}
+      {resumeData.work.map((work) => (
         <AccordionItem
           key={work.company}
           value={work.company}
@@ -41,12 +42,12 @@ export default function WorkSection() {
           <AccordionTrigger className="hover:no-underline p-0 cursor-pointer transition-colors rounded-none group [&>svg]:hidden">
             <div className="flex items-center gap-x-3 justify-between w-full text-left">
               <div className="flex items-center gap-x-3 flex-1 min-w-0">
-                {/* <LogoImage src={work.logoUrl} alt={work.company} /> */}
                 <div className="flex-1 min-w-0 gap-0.5 flex flex-col">
                   <div className="flex items-center gap-2">
                     {work.company}
                     <span className="text-xs text-muted-foreground whitespace-nowrap shrink-0">
-                      {work.start} - {work.end ?? DATA.sections.work.presentLabel}
+                      {/* 4. Swapped static presentLabel fallback to use resumeData as well */}
+                      {work.start} - {work.end ?? resumeData.sections.work.presentLabel}
                     </span>
                     <span className="relative inline-flex items-center w-3.5 h-3.5">
                       <ChevronRight
@@ -73,7 +74,7 @@ export default function WorkSection() {
               </div>
             </div>
           </AccordionTrigger>
-          <AccordionContent className="p-0 text-xs sm:text-sm text-muted-foreground  professional-opening">
+          <AccordionContent className="p-0 text-xs sm:text-sm text-muted-foreground professional-opening">
             {work.description}
           </AccordionContent>
         </AccordionItem>
@@ -81,4 +82,3 @@ export default function WorkSection() {
     </Accordion>
   );
 }
-

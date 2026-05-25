@@ -9,10 +9,15 @@ import {
 import { DATA } from "@/data/resume";
 import { cn } from "@/lib/utils";
 
-export default function ProfessionalSummarySection() {
+interface ProfessionalSummarySectionProps {
+  // Accepts the dynamically switched data context directly as a prop
+  resumeData: any; 
+}
+
+export default function ProfessionalSummarySection({ resumeData }: ProfessionalSummarySectionProps) {
   return (
     <div className="w-full grid gap-6">
-      {DATA.professionalSummary.map((item, index) => (
+      {resumeData .professionalSummary.map((item, index) => (
         <div
           key={item.text || index}
           className="w-full grid gap-2"
