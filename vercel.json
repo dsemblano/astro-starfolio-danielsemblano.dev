@@ -26,7 +26,7 @@
       ]
     },
     {
-      "source": "/:path*",
+      "source": "/(.*).(css|js|txt|ico|png|svg)",
       "headers": [
         {
           "key": "X-Content-Type-Options",
