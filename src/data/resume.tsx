@@ -25,7 +25,7 @@ export const DATA = {
   ogImage: "/og_image.png",
   sections: {
     about: { order: 1, enabled: true, heading: "About" },
-    skills: { order: 2, enabled: true, heading: "Skills" },
+    skills: { order: 2, enabled: false, heading: "Skills" },
     projects: {
       order: 3, enabled: true,
       label: "My Projects",

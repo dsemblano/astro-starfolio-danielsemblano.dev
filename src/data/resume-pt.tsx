@@ -12,7 +12,7 @@ import { Kubernetes } from "@/components/ui/svgs/kubernetes";
 import { Astro } from "@/components/ui/svgs/astro";
 
 export const DATA = {
-  name: "Daniel Semblano - Desenvolvedor Full Stack",
+  name: "Daniel Semblano",
   initials: "DS",
   url: "https://danielsemblano.dev",
   location: "Macappá, AP",
@@ -20,12 +20,12 @@ export const DATA = {
   description:
     "Desenvolvedor Full Stack e Especialista SEO.",
   summary:
-    "Especialista com mais de 15 anos de experiência no desenvolvimento de websites de alto desempenho, focados em SEO e construídos para escalabilidade e confiabilidade. Soluções seguras, semânticas e de alta disponibilidade, utilizando Astro, React ou a stack Roots.io (Trellis, Bedrock, Sage) para WordPress e WooCommerce, alcançando consistentemente pontuações acima de 90 no Google PageSpeed ​​e GTmetrix. Ao longo dos anos, trabalhei em todo o espectro do desenvolvimento web: arquitetura frontend, sistemas de design, UI/UX, integrações backend, automação DevOps e ecossistemas personalizados para WordPress/WooCommerce, utilizando stacks modernas como Astro, React, Node.js e Roots.io. Minha abordagem combina conhecimento técnico aprofundado com atenção aos detalhes — HTML semântico, acessibilidade, orçamentos de desempenho, melhores práticas de segurança e arquiteturas de fácil manutenção. Gosto de assumir a responsabilidade por projetos: entender o problema, projetar uma solução escalável, implementá-la com altos padrões, otimizar o desempenho e implantá-la com confiabilidade.",
+    "Nos últimos 15 anos, desenvolvi websites de alto desempenho, focados em SEO, projetados para escalabilidade, segurança e confiabilidade. Sou especialista em fornecer soluções limpas, semânticas e altamente disponíveis, utilizando Astro, React e a stack Roots.io (Trellis, Bedrock, Sage) para WordPress e WooCommerce, alcançando consistentemente pontuações acima de 90 no Google PageSpeed ​​e GTmetrix.",
   avatarUrl: "/2.webp",
   ogImage: "/og_image.png",
   sections: {
     about: { order: 1, enabled: true, heading: "Sobre" },
-    skills: { order: 2, enabled: true, heading: "Habilidades" },
+    skills: { order: 2, enabled: false, heading: "Habilidades" },
     projects: {
       order: 3, enabled: true,
       label: "Meus Projetos",
