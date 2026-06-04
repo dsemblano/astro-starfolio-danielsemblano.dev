@@ -12,7 +12,7 @@ import { Kubernetes } from "@/components/ui/svgs/kubernetes";
 import { Astro } from "@/components/ui/svgs/astro";
 
 export const DATA = {
-  name: "Daniel Semblano - Full Stack Developer",
+  name: "Daniel Semblano",
   initials: "DS",
   url: "https://danielsemblano.dev",
   location: "Macapá, AP",
@@ -20,7 +20,7 @@ export const DATA = {
   description:
     "Full Stack Developer and SEO specialist.",
   summary:
-    "Specialist with more than 15 years of service in developing high-performance, SEO-focused websites built for scale and reliability. Secure, semantic, and highly available solutions using Astro, React, or the Roots.io stack (Trellis, Bedrock, Sage) for WordPress and WooCommerce, consistently achieving 90+ scores on Google PageSpeed and GTmetrix.  Over the years, I’ve worked across the full spectrum of web development: frontend architecture, design systems, UI/UX, backend integrations, DevOps automation, and custom WordPress/WooCommerce ecosystems using modern stacks like Astro, React, Node.js, and Roots.io. My approach combines technical depth with attention to detail-semantic HTML, accessibility, performance budgets, security best practices, and maintainable architectures. I enjoy owning projects: understanding the problem, designing a scalable solution, implementing it with high standards, optimizing performance, and deploying with reliability.",
+    "Over the past 15 years, I’ve engineered high-performance, SEO-focused websites built for scale, security, and reliability. I specialize in delivering clean, semantic, and highly available solutions using Astro, React, and the Roots.io stack (Trellis, Bedrock, Sage) for WordPress and WooCommerce, consistently achieving 90+ scores on Google PageSpeed and GTmetrix.",
   avatarUrl: "/2.webp",
   ogImage: "/og_image.png",
   sections: {

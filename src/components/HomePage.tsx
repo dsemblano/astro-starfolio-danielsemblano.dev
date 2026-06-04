@@ -165,12 +165,12 @@ return (
         <h1 className="order-2 flex flex-col gap-2 md:order-1">
           <BlurFadeText
             delay={BLUR_FADE_DELAY}
-            className="text-3xl font-semibold tracking-tighter sm:text-4xl lg:text-5xl"
+            className="text-5xl font-semibold tracking-tighter lg:text-7xl"
             yOffset={8}
             text={resumeData.name}
           />
           <BlurFadeText
-            className="text-muted-foreground max-w-[600px] md:text-lg lg:text-xl"
+            className="text-muted-foreground max-w-[600px] md:text-xl lg:text-2xl"
             delay={BLUR_FADE_DELAY}
             text={resumeData.description}
           />
