@@ -26,7 +26,16 @@
       ]
     },
     {
-      "source": "/(robots.txt|_astro/.*)",
+      "source": "/_astro/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    },
+    {
+      "source": "/robots.txt",
       "headers": [
         {
           "key": "X-Content-Type-Options",
