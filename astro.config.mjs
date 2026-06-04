@@ -7,6 +7,8 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import remarkGfm from 'remark-gfm';
 import rehypePrettyCode from 'rehype-pretty-code';
+// 1. Change this line back to import from the package you just added
+import { unified } from '@astrojs/markdown-remark';
 import { remarkCodeMeta } from './src/lib/remark-code-meta.ts';
 import { CONFIG } from './src/data/config.ts';
 
@@ -34,25 +36,23 @@ export default defineConfig({
 
   integrations: [
     react(),
-    mdx({
-      remarkPlugins: [remarkGfm, remarkCodeMeta],
-      rehypePlugins: [[rehypePrettyCode, prettyCodeOptions]],
-      syntaxHighlight: false,
-    }),
+    mdx(), // Inherits processor configuration below cleanly
     sitemap(),
   ],
 
   markdown: {
     syntaxHighlight: false,
-    remarkPlugins: [remarkGfm, remarkCodeMeta],
-    rehypePlugins: [[rehypePrettyCode, prettyCodeOptions]],
+    processor: unified({
+      remarkPlugins: [remarkGfm, remarkCodeMeta],
+      rehypePlugins: [[rehypePrettyCode, prettyCodeOptions]],
+    }),
   },
 
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'pt'],
     routing: {
-      prefixDefaultLocale: false, // Keep your English site at domain.com/ and Portuguese at domain.com/pt/
+      prefixDefaultLocale: false,
     },
   },
   
