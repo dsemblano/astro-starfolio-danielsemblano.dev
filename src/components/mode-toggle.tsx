@@ -8,6 +8,9 @@ export function ModeToggle({ className }: { className?: string }) {
 
   return (
     <Button
+      id="button-on-off"
+      aria-label="Toggle dark mode"
+      name="theme-toggle"
       type="button"
       variant="link"
       size="icon"
