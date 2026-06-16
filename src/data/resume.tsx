@@ -18,9 +18,9 @@ export const DATA = {
   location: "Macapá, AP",
   locationLink: "https://www.google.com/maps/place/macappá+ap",
   description:
-    "Full Stack Developer and SEO specialist.",
+    "High-performance, SEO-focused websites built for scale, security, and reliability, using Astro, React, and the Roots.io stack (WordPress and WooCommerce).",
   summary:
-    "Over the past 15 years, I’ve engineered high-performance, SEO-focused websites built for scale, security, and reliability. I specialize in delivering clean, semantic, and highly available solutions using Astro, React, and the Roots.io stack (Trellis, Bedrock, Sage) for WordPress and WooCommerce, consistently achieving 90+ scores on Google PageSpeed and GTmetrix.",
+    "With over 15 years of experience, consistently achieving 90+ scores on Google PageSpeed and GTmetrix, with clean, semantic, and highly available solutions.",
   avatarUrl: "/2.webp",
   ogImage: "/og_image.png",
   sections: {
